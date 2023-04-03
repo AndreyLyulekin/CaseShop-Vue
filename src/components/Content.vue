@@ -1,11 +1,7 @@
 <template>
     <div class="content">
         <Content__Menu />
-        <Content__Main 
-        v-for="item of items"
-        :key="item.id"
-        v-bind:items="items"
-        />
+        <Content__Main />
     </div>
 </template>
   
@@ -22,7 +18,6 @@ export default {
            
         }
      },
-     props: 'items',
   components: {
     Content__Menu,
     Content__Main,

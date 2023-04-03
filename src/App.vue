@@ -12,18 +12,12 @@ import Header from './components/Header.vue'
 import Content from './components/Content.vue'
 export default {
   name: 'App',
-  data () {
-    return {
-      items: [
-        {id: 1, title: 'iPhone 9', description: 'An apple mobile which is nothing like apple', price: 549},
-        {id: 2, title: 'iPhone X', description: 'SIM-Free, Model A19211 6.5-inch Super Retina HD di…lay with OLED technology A12 Bionic chip with ...', price: 899},
-        {id: 3, title: 'Samsung Universe 9', description: "Samsung's new variant which goes beyond Galaxy to the Universe", price: 1249}
-      ]
-    }
-  },
   components: {
     Header,
     Content
+  },
+  async mounted() {
+    this.$store.dispatch('fetchProducts')
   }
 }
 </script>
