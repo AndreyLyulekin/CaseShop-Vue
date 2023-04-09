@@ -1,5 +1,8 @@
 <template>
-    <div class="content__main">
+      <div class="content__main">
+      <my-input
+       v-model="searchQuery"
+      />
         <ul class="items_list">
             <li class="item" v-for="product in $store.state.products" :key="product.id">
                 <div class="card">
@@ -13,7 +16,7 @@
                             <div class="card__price card__price--discount">135 000</div>
                             <div class="card__price card__price--common">{{ product.price }}</div>
                         </div>
-                        <a href="#" class="card__title">{{ product.description }}</a>
+                        <a href="#" class="card__title">{{ product.title }} <br/> {{ product.description }}</a>
                         <button class="card__add">В корзину</button>
                     </div>
                 </div>
@@ -25,8 +28,18 @@
 
 
 <script>
+import MyInput from './UI/MyInput.vue'
+
 export default {
-    name: 'Content__Main'
+    name: 'Content__Main',
+    components : {
+      MyInput,
+    },
+    data () {
+      return {
+      searchQuery: ''
+      }
+    }
 }
 </script>
 
@@ -152,6 +165,7 @@ export default {
     -webkit-box-orient: vertical;
     overflow: hidden;
     min-height: 100px;
+    text-decoration: none;
 }
 
 .card__title:hover {

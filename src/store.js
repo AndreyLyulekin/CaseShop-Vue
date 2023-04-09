@@ -1,9 +1,9 @@
 import { createStore } from "vuex"
 
-
 const store = createStore({
     state: {
-        products: []
+        products: [],
+        searchQuery: null,
       }
     ,
     actions: {

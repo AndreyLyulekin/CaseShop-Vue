@@ -9,10 +9,10 @@
        </select>
      </div>
      <div class="header__central-part">
-       <button class="header__central-btn">Услуги</button>
+       <router-link to="/" class="header__central-btn">Главная</router-link>
        <button class="header__central-btn">Акции</button>
        <button class="header__central-btn">Новости</button>
-       <button class="header__central-btn">Контакты</button>
+       <router-link to="/contacts" class="header__central-btn">Cвязаться с нами</router-link>
      </div>
      <div class="header__right-part">
        <button class="header__phone" @click="headerPopupContacts=!headerPopupContacts"><span class="header__phone_span">Call me maybe</span></button>
@@ -98,14 +98,15 @@ export default {
     display: flex;
     flex-direction: row;
     gap: 10px;
+    align-items: center;
 }
 
 .header__central-btn {
-    height: 50px;
     cursor: pointer;
     background: transparent;
     color: whitesmoke;
     border: none;
+    text-decoration: none;
 }
 
 .header__right-part{
