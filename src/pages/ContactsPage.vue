@@ -12,12 +12,12 @@
         <input type="text" name="firstname" placeholder="Ваше имя">
         <label>Фамилия</label>
         <input type="text" name="lastname" placeholder="Фамилия">
-        <label>Ваш город</label>
+        <label>Ваш город</label> <br/>
         <select>
           <option value="Vladivostok">Владивосток</option>
           <option value="Nakhodka">Находка</option>
-        </select>
-        <label>Subject</label>
+        </select><br/>
+        <label>Сообщение</label> 
         <textarea placeholder="Напишите что-нибудь..." style="height:170px"></textarea>
         <input type="submit" value="Отправить">
       </form>
@@ -52,6 +52,10 @@ input[type=text], select, textarea {
     margin-top: 6px;
     margin-bottom: 16px;
     resize: vertical;
+}
+
+select {
+  width: 320px;
 }
 
 input[type=submit] {

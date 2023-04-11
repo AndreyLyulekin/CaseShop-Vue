@@ -20,7 +20,7 @@
 <script>
   
 export default {
-    name: 'Content__Menu',
+    name: 'ContentMenu',
     data() {
         return {
            
@@ -50,7 +50,12 @@ export default {
     font-size: 30px;
     }
     .content__menu {
-    margin-right: 20px;
+    margin-right: 30px;
     min-width: 220px;
+    }
+    @media only screen and (max-width: 1530px) {
+    .content__menu {
+    display: none;
+        }
     }
 </style>

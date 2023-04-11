@@ -1,27 +1,25 @@
 <template>
     <div class="content">
-        <Content__Menu />
-        <Content__Main />
+        <ContentMenu />
+        <ContentMain />
+        <WhileLoading v-if="$store.state.isLoading"/>
     </div>
 </template>
   
 
 
 <script>
-import Content__Menu from '@/components/Content__Menu.vue'
-import Content__Main from '@/components/Content__Main.vue'
+import ContentMenu from '@/components/ContentMenu.vue'
+import ContentMain from '@/components/ContentMain.vue'
+import WhileLoading from '@/components/UI/WhileLoading.vue'
 
 export default {
     name: 'ContentSection',
-    data() {
-        return {
-           
-        }
-     },
-  components: {
-    Content__Menu,
-    Content__Main,
-  }
+    components: {
+    ContentMenu,
+    ContentMain,
+    WhileLoading,
+    }
   }
 </script>
 
@@ -34,17 +32,9 @@ export default {
     max-width: 1500px;
     margin: auto;
 }
-
-
+@media only screen and (max-width: 1530px) {
+  .content {
+    max-width: 80%;
+  }
+}
 </style>
-
-
-
-<!-- <div class="content__main">
-            <div class="content__aadvertise">
-                
-            </div>
-            <div class="content__items">
-
-            </div>
-        </div> -->
