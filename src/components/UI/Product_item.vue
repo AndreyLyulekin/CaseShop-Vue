@@ -1,62 +1,63 @@
 <template>
-    <li class="item" 
-            v-for="product in $store.state.products" 
-            :key="product.id" 
-            @click="openPopupDetail(product.id)"
-            v-on:submit.prevent>
-      <div class="card">
-        <div class="card__top">
-          <a href="#" class="card__image">
-            <img :src=product.thumbnail :alt=product.title>
-            </a>
-        </div>
-        <div class="card__bottom">
-          <div class="card__prices">
-            <p>Стоимость: </p>
-            <div class="card__price card__price--common">{{ product.price }}</div>
-          </div>
-          <a href="#" class="card__title">{{ product.title }} <br/> {{ product.description }}</a>
-          <button class="card__add">В корзину</button>
-        </div>
+  <li
+    class="item"
+    v-for="product in $store.state.products"
+    :key="product.id"
+    @click="openPopupDetail(product.id)"
+    v-on:submit.prevent
+  >
+    <div class="card">
+      <div class="card__top">
+        <a href="#" class="card__image">
+          <img :src="product.thumbnail" :alt="product.title" />
+        </a>
       </div>
-    </li>
-    <PopupDetail 
-    v-show="isPopupOpen"
-    @closePopup="closePopup"
-    />
+      <div class="card__bottom">
+        <div class="card__prices">
+          <p>Стоимость:</p>
+          <div class="card__price card__price--common">{{ product.price }}</div>
+        </div>
+        <a href="#" class="card__title"
+          >{{ product.title }} <br />
+          {{ product.description }}</a
+        >
+        <button class="card__add">В корзину</button>
+      </div>
+    </div>
+  </li>
+  <PopupDetail v-show="isPopupOpen" @closePopup="closePopup" />
 </template>
 
 <script>
-import PopupDetail from '@/components/UI/PopupDetail.vue'
-    export default {
-    name: 'Product_item',
-    data() {
-      return {
-        isPopupOpen: false
-      }
+import PopupDetail from '@/components/UI/PopupDetail.vue';
+export default {
+  name: 'Product_item',
+  data() {
+    return {
+      isPopupOpen: false,
+    };
+  },
+  components: {
+    PopupDetail,
+  },
+  methods: {
+    openPopupDetail(id) {
+      this.isPopupOpen = true;
+      this.$store.dispatch('findOneProduct', id);
     },
-    components: {
-      PopupDetail
+    closePopup() {
+      this.isPopupOpen = false;
     },
-    methods: {
-      openPopupDetail (id) {
-        this.isPopupOpen = true
-        this.$store.dispatch('findOneProduct', id)
-      },
-      closePopup () {
-        this.isPopupOpen = false;
-      }
-    }
-  }
+  },
+};
 </script>
 
 <style scoped>
 .item {
-    list-style: none;
-    
+  list-style: none;
 }
 .card {
-  min-width: 215px;
+  width: 215px;
   min-height: 350px;
   box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -112,7 +113,7 @@ import PopupDetail from '@/components/UI/PopupDetail.vue'
 }
 
 .card__price::after {
-  content: "₽";
+  content: '₽';
   margin-left: 4px;
   position: relative;
 }
@@ -134,11 +135,11 @@ import PopupDetail from '@/components/UI/PopupDetail.vue'
   line-height: 150%;
   color: #414141;
   -webkit-line-clamp: 4;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    min-height: 100px;
-    text-decoration: none;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 100px;
+  text-decoration: none;
 }
 
 .card__title:hover {
