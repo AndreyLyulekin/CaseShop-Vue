@@ -2,7 +2,7 @@
   <header class="header" id="header" v-cloak>
     <div class="header__parts">
       <div class="header__left-part">
-        <h1 class="header__logo">CaseShop</h1>
+        <router-link to="/" class="header__logo">CaseShop</router-link>
       </div>
       <div class="header__central-part">
         <router-link to="/" class="header__central-btn">Главная</router-link>
@@ -104,7 +104,12 @@ export default {
 }
 
 .header__logo {
+  cursor: pointer;
+  background: transparent;
   color: whitesmoke;
+  border: none;
+  text-decoration: none;
+  font-size: 40px;
 }
 
 .header__select {

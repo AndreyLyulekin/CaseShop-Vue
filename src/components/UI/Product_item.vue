@@ -3,7 +3,7 @@
     class="item"
     v-for="product in $store.state.products"
     :key="product.id"
-    @click="openPopupDetail(product.id)"
+    @click.prevent="openPopupDetail(product.id)"
     v-on:submit.prevent
   >
     <div class="card">

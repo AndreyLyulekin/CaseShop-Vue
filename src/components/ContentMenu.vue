@@ -2,18 +2,39 @@
   <div class="content__menu">
     <h3>Каталог</h3>
     <ul>
-      <li><a href="">iPhone</a></li>
-      <li><a href="">Apple Watch</a></li>
-      <li><a href="">iPad</a></li>
-      <li><a href="">MacBook</a></li>
-      <li><a href="">Dyson</a></li>
-      <li><a href="">Наушники и колонки</a></li>
-      <li><a href="">Аксессуары</a></li>
-      <li><a href="">Красота и здоровье</a></li>
-      <li><a href="">Квадрокоптеры</a></li>
+      <li>
+        <button @click.prevent="getProductsFromCategorie('/')">Все товары</button>
+      </li>
+      <li v-for="categorie in $store.state.categoryProducts" :key="categorie" :value="categorie">
+          <button @click.prevent="getProductsFromCategorie(categorie)">{{ categorie }}</button>
+      </li>
     </ul>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'CategoryProductsView',
+  data () {
+    return {
+      currentCategory: null,
+      categories: []
+    }
+  },
+  methods: {
+    getProductsFromCategorie (categorie) {
+      if (categorie === '/'){
+      this.$store.dispatch('getProductsFromCategorie', categorie);
+      } else {
+        categorie = '/category/' + categorie
+      }
+      this.$store.dispatch('getProductsFromCategorie', categorie);
+    },
+    
+  },
+};
+</script>
+
 
 <style scoped>
 ul {
@@ -23,8 +44,8 @@ ul {
   padding: 0;
 }
 li {
-  height: 35px;
-  margin-bottom: 12px;
+  height: 25px;
+  margin-bottom: 10px;
 }
 a {
   text-decoration: none;
@@ -32,6 +53,12 @@ a {
 }
 h3 {
   font-size: 30px;
+}
+button {
+  cursor: pointer;
+    background: transparent;
+    border: none;
+    text-decoration: none;
 }
 .content__menu {
   margin-right: 80px;

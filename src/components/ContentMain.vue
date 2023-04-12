@@ -4,7 +4,7 @@
       Нет подходящих запросу поиска товаров
     </p>
     <div>
-      <PaginationButtons v-if="!!$store.state.products.length" />
+      <PaginationButtons v-if="$store.state.products.length > 5" />
     </div>
     <ul class="items_list" v-if="!!$store.state.products.length">
       <Product_item />
@@ -46,7 +46,6 @@ export default {
 .content__main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 @media only screen and (max-width: 1550px) {

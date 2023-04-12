@@ -3,6 +3,7 @@ import { createStore } from 'vuex';
 const store = createStore({
   state: {
     products: [],
+    categoryProducts: [],
     searchQuery: null,
     isLoading: false,
     product: [],
@@ -38,6 +39,25 @@ const store = createStore({
         .catch((err) => console.log(err))
         .finally(() => ctx.commit('setIsLoading', false));
     },
+    async getCategoryProducts(ctx) {
+      await ctx.commit('setIsLoading', true);
+      await fetch(`https://dummyjson.com/products/categories`)
+        .then((res) => res.json())
+        .then((categories) => ctx.commit('updateCategoryProducts', categories))
+        .catch((err) => console.log(err))
+        .finally(() => ctx.commit('setIsLoading', false));
+    },
+    async getProductsFromCategorie(ctx, categorie) {
+      await ctx.commit('setIsLoading', true);
+      await fetch(`https://dummyjson.com/products${categorie}`)
+        .then((res) => res.json())
+        .then((products) => {
+          ctx.commit('updateProducts', products);
+          ctx.commit('setTotalProductsCount', products.total);
+        })
+        .catch((err) => console.log(err))
+        .finally(() => ctx.commit('setIsLoading', false));
+    }
   },
   mutations: {
     updateProducts(state, products) {
@@ -52,6 +72,10 @@ const store = createStore({
     setTotalProductsCount(state, totalProducts) {
       state.pages = totalProducts;
     },
+    updateCategoryProducts(state, categories) {
+      let result = categories.map((value) => value[0].toUpperCase() + value.substr(1))
+      state.categoryProducts = result;
+    }
   },
 });
 

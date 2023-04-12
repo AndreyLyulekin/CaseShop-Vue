@@ -17,6 +17,7 @@ export default {
   },
   async mounted() {
     this.$store.dispatch('fetchProducts');
+    this.$store.dispatch('getCategoryProducts');
   },
 };
 </script>
