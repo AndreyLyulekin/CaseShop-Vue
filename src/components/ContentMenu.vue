@@ -27,8 +27,8 @@ export default {
       this.$store.dispatch('getProductsFromCategorie', categorie);
       } else {
         categorie = '/category/' + categorie
+        this.$store.dispatch('getProductsFromCategorie', categorie);
       }
-      this.$store.dispatch('getProductsFromCategorie', categorie);
     },
     
   },
